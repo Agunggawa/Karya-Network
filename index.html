@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="src/output.css" />
+  <title>Karya Networking</title>
+  <link rel="icon" href="img/logo_ksl.png" type="image/png" />
+  <style>
+    @keyframes fadeSlideDown {
+      0% { opacity: 0; transform: translateY(-40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    @keyframes blinkCaret {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: #facc15; } /* kuning */
+    }
+
+    .animate-fade-slide {
+      animation: fadeSlideDown 1s cubic-bezier(0.4,0,0.2,1) both;
+    }
+    .animate-fade-slide-delay {
+      animation: fadeSlideDown 1s cubic-bezier(0.4,0,0.2,1) 0.5s both;
+    }
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .typewriter-text {
+      display: inline-block;
+      border-right: 3px solid #facc15;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: blinkCaret 0.75s step-end infinite;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-white to-yellow-100 flex flex-col items-center justify-center min-h-screen">
+
+  <div class="flex flex-col items-center mt-36 mb-4 text-center">
+    <h1 class="text-5xl md:text-5xl font-extrabold bg-gradient-to-r from-yellow-400 via-yellow-600 to-yellow-400 bg-clip-text text-transparent tracking-tight drop-shadow-2xl animate-fade-slide">
+      Welcome to <span class="inline-block animate-pulse">Booth Networking</span>
+    </h1>
+
+    <p class="mt-6 text-lg md:text-2xl font-medium text-yellow-700 h-[2.5rem]">
+      <span id="typewriter" class="typewriter-text font-semibold text-yellow-900"></span>
+    </p>
+
+    <div class="w-32 h-1 bg-yellow-400 rounded-full mt-6 animate-fade-slide-delay"></div>
+  </div>
+
+
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center mb-12">
+      <div class="bg-yellow-50 p-6 rounded-lg shadow-md transform transition duration-500 hover:scale-105 hover:shadow-2xl animate-float">
+        <img src="../img/rumahan.jpg" alt="Karawo" class="w-full h-72 object-cover rounded-md mb-4 transition duration-500 ">
+        <h3 class="text-2xl font-semibold mb-4 text-yellow-600">Smart Home (Lamp Control)</h3>
+        <p class="text-gray-600">
+          Karawo, seni sulaman tradisional dari Gorontalo, mencerminkan nilai ketekunan, kesabaran, dan keindahan yang muncul dari proses yang rumit dan mendetail. Setiap helai benang yang disulam secara manual mencerminkan ketelitian dan dedikasi pengrajin dalam menciptakan motif-motif indah yang kaya makna budaya.
+        </p>
+      </div>
+
+      <div class="bg-yellow-50 p-6 rounded-lg shadow-md transform transition duration-500 hover:scale-105 hover:shadow-2xl animate-float">
+        <img src="../img/angkatbrg.jpg" alt="Tapahula" class="w-full h-72 object-cover rounded-md mb-4 transition duration-500 ">
+        <h3 class="text-2xl font-semibold mb-4 text-yellow-600">Robot Angkat Barang</h3>
+        <p class="text-gray-600">
+          Tapahula adalah tempat penyimpanan atribut budaya, pada persiapan pernikahan, masyarakat Gorontalo mengenalnya sejak lama. Tapahula dari kayu berbentuk khas persegi ini jika diterapkan pada lampu tidur, memberi sentuhan unik dan artistik khas budaya lokal.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="w-full bg-yellow-200 py-4 mt-12">
+    <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+      <span class="text-sm text-yellow-500 font-semibold">&copy; 2025 Kelompok Studi Linux (Networking). All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    const words = ["Eksplorasi", "Inovasi", "&", "Teknologi", "Bersama Kami"];
+    const target = document.getElementById("typewriter");
+    let i = 0;
+
+    function typeNextWord() {
+      if (i < words.length) {
+        target.innerHTML += (i > 0 ? " " : "") + words[i];
+        i++;
+        setTimeout(typeNextWord, 500);
+      }
+    }
+
+    window.onload = () => {
+      setTimeout(typeNextWord, 1000); 
+    };
+  </script>
+
+</body>
+</html>
