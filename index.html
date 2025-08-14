@@ -37,10 +37,99 @@
       overflow: hidden;
       animation: blinkCaret 0.75s step-end infinite;
     }
+
+    /* Container */
+  .wa-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    font-family: sans-serif;
+  }
+
+  /* Popup */
+  .wa-popup {
+    width: 260px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    margin-bottom: 10px;
+    overflow: hidden;
+    animation: fadeInUp 0.3s ease;
+  }
+  .wa-header {
+    background: #25d366;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .wa-close {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .wa-body {
+    padding: 12px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.4em;
+  }
+  .wa-footer {
+    padding: 12px;
+    border-top: 1px solid #eee;
+    text-align: center;
+  }
+  .wa-start {
+    background: #25d366;
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    display: inline-block;
+    font-size: 14px;
+  }
+  .wa-start:hover {
+    background: #1ebe5d;
+  }
+
+  /* Floating Button */
+  .wa-button {
+    width: 56px;
+    height: 56px;
+    background: #25d366;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    cursor: pointer;
+    animation: waFloat 2.5s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  .wa-button img {
+    width: 28px;
+    height: 28px;
+    filter: brightness(0) invert(1);
+  }
+
+  /* Animations */
+  @keyframes waFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
   </style>
 </head>
 <body class="bg-gradient-to-b from-white to-yellow-100 flex flex-col items-center justify-center min-h-screen">
-
   <div class="flex flex-col items-center mt-36 mb-4 text-center">
     <h1 class="text-5xl md:text-5xl font-extrabold bg-gradient-to-r from-yellow-400 via-yellow-600 to-yellow-400 bg-clip-text text-transparent tracking-tight drop-shadow-2xl animate-fade-slide">
       Welcome to <span class="inline-block animate-pulse">Booth Networking</span>
@@ -79,10 +168,56 @@
     </div>
   </div>
 
+<!-- === Floating WhatsApp Button + Popup === -->
+<div class="wa-container">
+
+
+  <!-- Floating Button -->
+  <a href="" id="wa-btn" class="wa-button" >
+    <img src="img/iconWA.png" alt="WhatsApp" />
+
+  </a>
+
+  <a href="" id="download-btn" class="wa-button" style="background:#3b82f6;">
+    <img src="img/file.png" alt="Unduh Panduan" />
+  </a>
+</div>
+
+
+
+<script>
+  const waBtn = document.getElementById('wa-btn');
+  const waPopup = document.getElementById('wa-popup');
+  const waClose = document.getElementById('wa-close');
+
+  waBtn.addEventListener('click', () => {
+    waPopup.classList.toggle('hidden');
+  });
+  waClose.addEventListener('click', () => {
+    waPopup.classList.add('hidden');
+  });
+
+   const downloadBtn = document.getElementById('download-btn');
+  const downloadPopup = document.getElementById('download-popup');
+  const downloadClose = document.getElementById('download-close');
+
+  downloadBtn.addEventListener('click', () => {
+    downloadPopup.classList.toggle('hidden');
+    waPopup.classList.add('hidden'); // tutup popup WA kalau terbuka
+  });
+  downloadClose.addEventListener('click', () => {
+    downloadPopup.classList.add('hidden');
+  });
+</script>
+
+
+
+
   <footer class="w-full bg-yellow-200 py-4 mt-12">
     <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
       <span class="text-sm text-yellow-500 font-semibold">&copy; 2025 Kelompok Studi Linux (Networking). All rights reserved.</span>
     </div>
+    
   </footer>
 
   <script>
@@ -101,7 +236,9 @@
     window.onload = () => {
       setTimeout(typeNextWord, 1000); 
     };
+    
   </script>
+
 
 </body>
 </html>
